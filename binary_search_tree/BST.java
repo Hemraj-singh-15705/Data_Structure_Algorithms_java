@@ -1,3 +1,4 @@
+import java.util.*;
 public class BST {
     public static class Node{
         int data;
@@ -64,16 +65,17 @@ public class BST {
                 root.right = delete(root.right, IS.data);
             }
             return root;
-    }  
+        }  
         public static Node findInorderSuccessor(Node root){
             while(root.left != null){
                 root = root.left;
             }
             return root;
         }
+        
 
     public static void main(String[] args) {
-        int values[] = {8,5,3,1,4,6,10,11,14};
+        int values[] = {8,5,3,6,10,11,14};
         Node root = null;
 
         for(int i=0; i<values.length; i++){
@@ -90,8 +92,10 @@ public class BST {
         //     System.out.println("Not found");
         // }
 
-        delete(root, 5);
-        System.out.println();
-        inOrder(root);
+        // delete(root, 5);
+        // System.out.println();
+        // inOrder(root);
+
+        
     }
 }
