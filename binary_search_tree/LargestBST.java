@@ -39,7 +39,7 @@ public class LargestBST {
         }
         if(leftInfo.isBST && rightInfo.isBST){
             maxBST = Math.max(maxBST,size);
-           return new Info(true,size,min,max);
+           return new Info(true,size,min,max); 
         }
         return new Info(false, size, min, max);
     }
