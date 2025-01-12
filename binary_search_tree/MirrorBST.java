@@ -8,6 +8,14 @@ public class MirrorBST {
             this.left = this.right = null;
         }
     }
+    public static void preOrder(Node root){
+        if(root == null){
+            return;
+        }
+        System.out.print(root.data +" ");
+        preOrder(root.left);
+        preOrder(root.right);
+    }
     public static Node createMirror(Node root){
         if(root == null){
             return null;
@@ -19,25 +27,32 @@ public class MirrorBST {
         root.right = leftMirror;
         return root;
     }
-    public static void preOrder(Node root){
-        if(root == null){
-            return;
+    
+    public static Node createBST(int arr[],int st,int end){
+        if(st > end){
+            return null;
         }
-        System.out.print(root.data +" ");
-        preOrder(root.left);
-        preOrder(root.right);
+        int mid = (st+end)/2;
+        Node root = new Node(arr[mid]);
+        root.left = createBST(arr, st, mid-1);
+        root.right = createBST(arr, mid+1, end);
+        return root;
     }
         public static void main(String[] args) {
-            Node root = new Node(8);
-            root.left  = new Node(5);
-            root.right = new Node(10);
-            root.left.left = new Node(3);
-            root.left.right = new Node(6);
-            root.right.right = new Node(11);
+            // Node root = new Node(8);
+            // root.left  = new Node(5);
+            // root.right = new Node(10);
+            // root.left.left = new Node(3);
+            // root.left.right = new Node(6);
+            // root.right.right = new Node(11);
 
 
-            root = createMirror(root);
+            // root = createMirror(root);
+            // preOrder(root);
+            int arr[] = {3,5,6,8,10,11,12};
+            Node root = createBST(arr, 0, arr.length-1);
             preOrder(root);
+
         }
     
 }
