@@ -1,5 +1,5 @@
 import java.util.*;
-public class BFS{
+public class DFS{
     public static class Edge{
         int src;
         int dest;
@@ -37,28 +37,37 @@ public class BFS{
 
         graph[6].add(new Edge(6, 5, 1));
     }
-    public static void bfs(ArrayList<Edge>[] graph){
-        Queue<Integer> q = new LinkedList<>();
-        boolean vis[] = new boolean[graph.length];
-        q.add(0); // source 0
-
-        while (!q.isEmpty()) {
-            int curr = q.remove();
-            if(!vis[curr]){
-                System.out.print(curr+" ");
-                vis[curr] = true;
-                for(int i=0; i<graph[curr].size(); i++){
-                    Edge e = graph[curr].get(i);
-                    q.add(e.dest);
-                }
+    
+    public static void dfs(ArrayList<Edge>[] graph,int curr, boolean vis[] ){  //O(n) 
+        System.out.print(curr+" ");
+        vis[curr] = true;
+        for(int i=0; i<graph[curr].size(); i++){
+            Edge e = graph[curr].get(i);
+            if(!vis[e.dest]){
+                dfs(graph, e.dest, vis);
             }
         }
-
     }
+
+    public static boolean hasPath(ArrayList<Edge>[] graph, int src, int dest,boolean vis[]){
+        if(src == dest){
+            return true;
+        }
+        vis[src] = true;
+        for(int i=0; i<graph[src].size(); i++){
+            Edge e = graph[src].get(i);
+            if(!vis[e.dest] && hasPath(graph, e.dest, dest, vis)){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
         int V=7;
         ArrayList<Edge> graph[]  = new ArrayList[V];
         createGraph(graph);
-        bfs(graph);
+        // dfs(graph, 0, new boolean[V]);
+        System.out.print(hasPath(graph, 0, 5, new boolean[V]));
     }
 }
