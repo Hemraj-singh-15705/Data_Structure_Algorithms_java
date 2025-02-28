@@ -38,8 +38,16 @@ public class BFS{
         graph[6].add(new Edge(6, 5, 1));
     }
     public static void bfs(ArrayList<Edge>[] graph){
-        Queue<Integer> q = new LinkedList<>();
         boolean vis[] = new boolean[graph.length];
+        for(int i=0; i<graph.length; i++){
+            if(!vis[i]){
+                bfsutil(graph,vis);
+            }
+        }
+    }
+    public static void bfsutil(ArrayList<Edge>[] graph, boolean vis[]){
+        Queue<Integer> q = new LinkedList<>();
+       
         q.add(0); // source 0
 
         while (!q.isEmpty()) {
