@@ -25,10 +25,10 @@ public class Bipartite{
         graph[2].add(new Edge(2, 4));
 
         graph[3].add(new Edge(3, 1));
-        graph[3].add(new Edge(3, 4));
+        // graph[3].add(new Edge(3, 4));
         
         graph[4].add(new Edge(4, 2));
-        graph[4].add(new Edge(4, 3));
+        // graph[4].add(new Edge(4, 3));
     }
 
 
@@ -42,9 +42,24 @@ public class Bipartite{
 
         for(int i=0 ; i< graph.length; i++){
             if(col[i] == -1){
-                
+                q.add(i);
+                col[i] = 0;
+                while(!q.isEmpty()){
+                    int curr = q.remove();
+                    for(int j=0; j<graph[curr].size(); j++){
+                        Edge e = graph[curr].get(j); //e.dest
+                        if(col[e.dest] == -1){
+                            int nextCol =  col[curr] == 0 ? 1:0;
+                            col[e.dest] = nextCol;
+                            q.add(e.dest);
+                        }else if(col[e.dest] == col[curr]){
+                            return false;
+                        }
+                    }
+                }
             }
         }
+        return true;
     }
 
 
@@ -52,5 +67,6 @@ public class Bipartite{
         int V =5;
         ArrayList<Edge> graph[] = new ArrayList[V];
         createGraph(graph);
+        System.out.println(isBipartite(graph));
     }
 }
