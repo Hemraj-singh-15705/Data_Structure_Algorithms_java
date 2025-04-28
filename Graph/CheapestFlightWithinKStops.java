@@ -1,7 +1,4 @@
-
-
 import java.util.*;
-
 public class CheapestFlightWithinKStops {
     static class Edge {
         int src, dest, wt;
