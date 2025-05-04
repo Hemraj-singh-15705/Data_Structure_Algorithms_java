@@ -16,7 +16,7 @@ public class ConnectingCities {
         }
     }
     //    Prim's algorithms 
-    public static int connecctCities(int cities[][]){
+    public static int connectCities(int cities[][]){
         PriorityQueue<Edge> pq = new PriorityQueue<>();
         boolean vis[] = new boolean[cities.length];
 
@@ -43,6 +43,6 @@ public class ConnectingCities {
                             {2,5,0,6,0},
                             {3,0,6,0,0},
                             {4,7,0,0,0}};
-        System.out.println("FInal minimum cost of connecting cities : "+connecctCities(cities));
+        System.out.println("FInal minimum cost of connecting cities : "+connectCities(cities));
     }
 }
